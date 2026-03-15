@@ -5,793 +5,654 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Achievers Learning Centre - Review</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Poppins', 'Noto Sans Devanagari', sans-serif;
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
             background: #0a0a1a;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 15px;
-            overflow-x: hidden;
-        }
-
-        .bg-animation {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
             overflow: hidden;
         }
 
-        .bg-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            animation: drift 8s infinite ease-in-out alternate;
+        /* Animated Background */
+        .bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+        .bg span {
+            position: absolute; border-radius: 50%; filter: blur(80px);
+            animation: drift 6s infinite ease-in-out alternate;
         }
-
-        .bg-circle:nth-child(1) { width: 300px; height: 300px; background: rgba(66,133,244,0.15); top: -50px; right: -50px; }
-        .bg-circle:nth-child(2) { width: 250px; height: 250px; background: rgba(52,168,83,0.12); bottom: -30px; left: -30px; animation-delay: 2s; }
-        .bg-circle:nth-child(3) { width: 200px; height: 200px; background: rgba(251,188,5,0.1); top: 40%; left: 50%; animation-delay: 4s; }
-        .bg-circle:nth-child(4) { width: 180px; height: 180px; background: rgba(234,67,53,0.1); bottom: 20%; right: 10%; animation-delay: 1s; }
+        .bg span:nth-child(1) { width: 280px; height: 280px; background: rgba(66,133,244,0.18); top: -40px; right: -40px; }
+        .bg span:nth-child(2) { width: 220px; height: 220px; background: rgba(52,168,83,0.14); bottom: -20px; left: -20px; animation-delay: 2s; }
+        .bg span:nth-child(3) { width: 180px; height: 180px; background: rgba(251,188,5,0.12); top: 50%; left: 40%; animation-delay: 3s; }
 
         @keyframes drift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, -30px) scale(1.1); }
+            0% { transform: translate(0,0) scale(1); }
+            100% { transform: translate(25px,-25px) scale(1.1); }
         }
 
-        .main-container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 420px;
-        }
-
-        .header-card {
-            background: linear-gradient(135deg, rgba(66,133,244,0.12), rgba(52,168,83,0.08));
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 24px;
-            padding: 25px 20px;
+        .container {
+            position: relative; z-index: 1;
+            width: 100%; max-width: 400px;
             text-align: center;
-            margin-bottom: 16px;
+        }
+
+        /* Main Card */
+        .card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 28px;
+            padding: 30px 22px;
             backdrop-filter: blur(20px);
         }
 
-        .google-logo {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 2px;
+        /* Google Logo */
+        .g-logo { font-size: 28px; font-weight: 700; margin-bottom: 2px; }
+        .c1{color:#4285F4}.c2{color:#EA4335}.c3{color:#FBBC05}.c4{color:#34A853}
+
+        .rev-label {
+            font-size: 11px; color: rgba(255,255,255,0.35);
+            letter-spacing: 3px; text-transform: uppercase; margin-bottom: 10px;
         }
 
-        .g-b { color: #4285F4; } .g-r { color: #EA4335; }
-        .g-y { color: #FBBC05; } .g-g { color: #34A853; }
-
-        .header-subtitle {
-            font-size: 12px;
-            color: rgba(255,255,255,0.4);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
+        .biz-name {
+            font-size: 18px; font-weight: 800; color: #fff;
+            margin-bottom: 14px; line-height: 1.3;
         }
 
-        .business-name {
-            font-size: 20px;
-            font-weight: 800;
-            color: #fff;
-            line-height: 1.3;
-        }
-
-        .stars-row {
-            display: flex;
-            justify-content: center;
-            gap: 4px;
-            margin-top: 10px;
-        }
-
-        .stars-row span {
-            font-size: 28px;
-            color: #FBBC05;
+        /* Animated Stars */
+        .stars { display: flex; justify-content: center; gap: 5px; margin-bottom: 20px; }
+        .stars span {
+            font-size: 30px; color: #FBBC05;
+            filter: drop-shadow(0 2px 8px rgba(251,188,5,0.35));
             animation: popStar 0.4s ease-out forwards;
-            opacity: 0;
-            transform: scale(0);
+            opacity: 0; transform: scale(0);
         }
-
-        .stars-row span:nth-child(1) { animation-delay: 0.3s; }
-        .stars-row span:nth-child(2) { animation-delay: 0.45s; }
-        .stars-row span:nth-child(3) { animation-delay: 0.6s; }
-        .stars-row span:nth-child(4) { animation-delay: 0.75s; }
-        .stars-row span:nth-child(5) { animation-delay: 0.9s; }
+        .stars span:nth-child(1){animation-delay:.2s}
+        .stars span:nth-child(2){animation-delay:.35s}
+        .stars span:nth-child(3){animation-delay:.5s}
+        .stars span:nth-child(4){animation-delay:.65s}
+        .stars span:nth-child(5){animation-delay:.8s}
 
         @keyframes popStar {
-            0% { opacity: 0; transform: scale(0) rotate(-20deg); }
+            0% { opacity:0; transform: scale(0) rotate(-20deg); }
             70% { transform: scale(1.3) rotate(5deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0); }
+            100% { opacity:1; transform: scale(1) rotate(0); }
         }
 
-        .status-card {
-            border-radius: 20px;
-            padding: 20px;
-            margin-bottom: 16px;
-            text-align: center;
-            transition: all 0.5s;
+        /* Divider */
+        .divider {
+            width: 50px; height: 3px; margin: 0 auto 18px;
+            background: linear-gradient(90deg, #4285F4, #34A853, #FBBC05, #EA4335);
+            border-radius: 2px;
         }
 
-        .status-card.copying {
-            background: linear-gradient(135deg, rgba(251,188,5,0.1), rgba(251,188,5,0.05));
-            border: 1px solid rgba(251,188,5,0.2);
-        }
-
-        .status-card.copied {
-            background: linear-gradient(135deg, rgba(52,168,83,0.15), rgba(52,168,83,0.05));
-            border: 1px solid rgba(52,168,83,0.3);
-        }
-
-        .status-card.error {
-            background: linear-gradient(135deg, rgba(234,67,53,0.1), rgba(234,67,53,0.05));
-            border: 1px solid rgba(234,67,53,0.2);
-        }
-
-        .status-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .status-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #fff;
-            margin-bottom: 4px;
-        }
-
-        .status-subtitle {
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        .review-preview {
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(255,255,255,0.08);
+        /* Status Section */
+        .status {
+            background: rgba(52,168,83,0.08);
+            border: 1px solid rgba(52,168,83,0.2);
             border-radius: 16px;
             padding: 18px;
             margin-bottom: 16px;
-            position: relative;
+            transition: all 0.5s;
+        }
+
+        .status-icon { font-size: 40px; display: block; margin-bottom: 8px; }
+
+        .status h3 {
+            font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 4px;
+        }
+
+        .status p {
+            font-size: 11px; color: rgba(255,255,255,0.5);
+        }
+
+        /* Progress Bar */
+        .progress-wrap {
+            width: 100%; height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 3px;
+            margin: 14px 0 6px;
             overflow: hidden;
         }
 
-        .review-preview::before {
-            content: '"';
+        .progress-bar {
+            height: 100%;
+            border-radius: 3px;
+            background: linear-gradient(90deg, #4285F4, #34A853);
+            width: 0%;
+            transition: width 0.3s linear;
+        }
+
+        .countdown-text {
+            font-size: 11px;
+            color: rgba(255,255,255,0.4);
+            margin-bottom: 8px;
+        }
+
+        /* Review Preview */
+        .review-box {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 14px;
+            text-align: left;
+            position: relative;
+            max-height: 120px;
+            overflow: hidden;
+        }
+
+        .review-box::after {
+            content: '';
             position: absolute;
-            top: -5px;
-            left: 10px;
-            font-size: 60px;
-            color: rgba(66,133,244,0.15);
-            font-family: Georgia, serif;
+            bottom: 0; left: 0; width: 100%; height: 30px;
+            background: linear-gradient(transparent, rgba(10,10,26,0.9));
         }
 
-        .review-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            font-size: 9px;
-            color: rgba(255,255,255,0.35);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            font-weight: 600;
+        .review-box .label {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 8px; color: rgba(255,255,255,0.3);
+            letter-spacing: 1.5px; text-transform: uppercase;
+            font-weight: 600; margin-bottom: 6px;
         }
 
-        .review-label .ai-dot {
-            width: 5px; height: 5px;
-            background: #34A853;
-            border-radius: 50%;
-            animation: pulse 1.5s infinite;
+        .review-box .label .dot {
+            width: 5px; height: 5px; background: #34A853;
+            border-radius: 50%; animation: blink 1.5s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.8); }
+        @keyframes blink {
+            0%,100%{opacity:1}50%{opacity:.3}
         }
 
         #reviewText {
-            font-size: 14px;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
+            font-size: 12px; color: rgba(255,255,255,0.7);
+            line-height: 1.6;
         }
 
-        .review-meta {
+        /* Instruction */
+        .instruction {
+            background: linear-gradient(135deg, rgba(66,133,244,0.1), rgba(52,168,83,0.08));
+            border: 1px solid rgba(66,133,244,0.2);
+            border-radius: 14px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .instruction h4 {
+            font-size: 14px; color: #fff; margin-bottom: 8px;
+        }
+
+        .inst-steps {
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.06);
+            flex-direction: column;
+            gap: 6px;
         }
 
-        .review-stars-small {
-            color: #FBBC05;
-            font-size: 14px;
-            letter-spacing: 2px;
+        .inst-step {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 11px; color: rgba(255,255,255,0.6);
         }
 
-        .copy-again-btn {
-            background: rgba(66,133,244,0.15);
-            border: 1px solid rgba(66,133,244,0.3);
-            color: #8ab4f8;
-            font-size: 10px;
-            padding: 5px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            transition: all 0.3s;
-            letter-spacing: 0.5px;
+        .inst-step .num {
+            width: 22px; height: 22px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 700; flex-shrink: 0;
         }
 
-        .copy-again-btn:hover {
-            background: rgba(66,133,244,0.25);
-        }
+        .inst-step:nth-child(1) .num { background: rgba(52,168,83,0.2); color: #34A853; }
+        .inst-step:nth-child(2) .num { background: rgba(66,133,244,0.2); color: #4285F4; }
+        .inst-step:nth-child(3) .num { background: rgba(251,188,5,0.2); color: #FBBC05; }
 
-        .different-review-btn {
+        .inst-step.done { color: rgba(52,168,83,0.8); }
+        .inst-step.done .num { background: rgba(52,168,83,0.3); }
+
+        /* Manual Button (fallback) */
+        .manual-btn {
             width: 100%;
-            background: rgba(255,255,255,0.04);
-            border: 1px dashed rgba(255,255,255,0.15);
-            color: rgba(255,255,255,0.5);
-            font-size: 12px;
-            padding: 12px;
-            border-radius: 12px;
-            cursor: pointer;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
             font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-            transition: all 0.3s;
-            margin-bottom: 16px;
-            display: flex;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .different-review-btn:hover {
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.25);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .different-review-btn:active { transform: scale(0.98); }
-
-        .shuffle-icon {
-            display: inline-block;
-            transition: transform 0.5s;
-        }
-
-        .different-review-btn:hover .shuffle-icon { transform: rotate(180deg); }
-
-        .cta-button {
-            width: 100%;
-            padding: 18px 24px;
-            border: none;
-            border-radius: 16px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 12px;
-            position: relative;
-            overflow: hidden;
             background: linear-gradient(135deg, #4285F4, #34A853);
             color: white;
-            box-shadow: 0 8px 30px rgba(66,133,244,0.3);
+            box-shadow: 0 8px 25px rgba(66,133,244,0.3);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 10px;
         }
 
-        .cta-button::before {
+        .manual-btn::before {
             content: '';
             position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
+            top: 0; left: -100%; width: 100%; height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmer 3s infinite;
+            animation: shimmer 2.5s infinite;
         }
 
         @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
+            0%{left:-100%}100%{left:100%}
         }
 
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(66,133,244,0.4);
-        }
+        .manual-btn:active { transform: scale(0.97); }
 
-        .cta-subtext {
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            text-align: center;
-            margin-bottom: 16px;
-        }
-
-        .steps-card {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
-
-        .steps-title {
-            font-size: 10px;
-            color: rgba(255,255,255,0.3);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 14px;
-            font-weight: 600;
-        }
-
-        .step-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 8px 0;
-        }
-
-        .step-row + .step-row {
-            border-top: 1px solid rgba(255,255,255,0.04);
-        }
-
-        .step-number {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
-        .step-row:nth-child(2) .step-number { background: rgba(66,133,244,0.15); color: #4285F4; }
-        .step-row:nth-child(3) .step-number { background: rgba(52,168,83,0.15); color: #34A853; }
-        .step-row:nth-child(4) .step-number { background: rgba(251,188,5,0.15); color: #FBBC05; }
-        .step-row:nth-child(5) .step-number { background: rgba(234,67,53,0.15); color: #EA4335; }
-
-        .step-info h4 {
-            font-size: 12px;
-            color: rgba(255,255,255,0.8);
-            font-weight: 600;
-        }
-
-        .step-info p {
-            font-size: 10px;
-            color: rgba(255,255,255,0.35);
-            margin-top: 2px;
-        }
-
-        .step-check {
-            color: #34A853;
-            font-size: 16px;
-            margin-left: auto;
-            flex-shrink: 0;
-            opacity: 0;
-            transition: all 0.3s;
-        }
-
-        .step-check.done {
-            opacity: 1;
-            animation: checkPop 0.4s ease-out;
-        }
-
-        @keyframes checkPop {
-            0% { transform: scale(0); }
-            70% { transform: scale(1.3); }
-            100% { transform: scale(1); }
-        }
-
-        .footer {
-            text-align: center;
-            padding: 10px;
-        }
-
-        .footer p {
-            font-size: 9px;
+        /* Footer */
+        .foot {
+            margin-top: 12px;
+            font-size: 8px;
             color: rgba(255,255,255,0.15);
-            letter-spacing: 0.5px;
         }
 
-        .heart { color: #EA4335; }
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 40px; height: 40px;
+            border: 3px solid rgba(255,255,255,0.1);
+            border-top: 3px solid #34A853;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
 
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* Confetti */
+        .confetti-box { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; overflow: hidden; }
+        .conf {
+            position: absolute; top: -10px;
+            width: 8px; height: 8px; border-radius: 2px;
+            animation: fall 3s ease-in forwards;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Toast */
         .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            background: #34A853;
-            color: white;
-            padding: 12px 24px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 600;
+            position: fixed; bottom: 25px; left: 50%;
+            transform: translateX(-50%) translateY(80px);
+            background: #34A853; color: white;
+            padding: 10px 22px; border-radius: 12px;
+            font-size: 12px; font-weight: 600;
             font-family: 'Poppins', sans-serif;
             z-index: 1000;
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-            box-shadow: 0 8px 30px rgba(52,168,83,0.4);
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            transition: transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55);
+            box-shadow: 0 6px 25px rgba(52,168,83,0.4);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Redirect blocked message */
+        .blocked-msg {
+            display: none;
+            background: rgba(234,67,53,0.1);
+            border: 1px solid rgba(234,67,53,0.25);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+            text-align: center;
         }
 
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
+        .blocked-msg p {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.5;
         }
 
-        .loading-dots {
-            display: inline-flex;
-            gap: 4px;
-        }
-
-        .loading-dots span {
-            width: 6px; height: 6px;
-            border-radius: 50%;
-            background: #FBBC05;
-            animation: loadDot 1.2s infinite;
-        }
-
-        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
-        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
-
-        @keyframes loadDot {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-
-        .confetti-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: 999;
-            overflow: hidden;
-        }
-
-        .confetti {
-            position: absolute;
-            top: -10px;
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-            animation: confettiFall 3s ease-in forwards;
-        }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        .blocked-msg strong {
+            color: #FBBC05;
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-animation">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-    </div>
+<div class="bg"><span></span><span></span><span></span></div>
+<div class="confetti-box" id="confBox"></div>
 
-    <div class="confetti-container" id="confettiContainer"></div>
+<div class="container">
+    <div class="card">
 
-    <div class="main-container">
-        <div class="header-card">
-            <div class="google-logo">
-                <span class="g-b">G</span><span class="g-r">o</span><span class="g-y">o</span><span class="g-b">g</span><span class="g-g">l</span><span class="g-r">e</span>
-            </div>
-            <div class="header-subtitle">Reviews</div>
-            <div class="business-name">⭐ Achievers Learning Centre ⭐</div>
-            <div class="stars-row">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-            </div>
+        <!-- Google Logo -->
+        <div class="g-logo">
+            <span class="c1">G</span><span class="c2">o</span><span class="c3">o</span><span class="c1">g</span><span class="c4">l</span><span class="c2">e</span>
+        </div>
+        <div class="rev-label">Reviews</div>
+
+        <div class="biz-name">Achievers Learning Centre</div>
+
+        <!-- Stars -->
+        <div class="stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
         </div>
 
-        <div class="status-card copying" id="statusCard">
-            <span class="status-icon" id="statusIcon">
-                <span class="loading-dots">
-                    <span></span><span></span><span></span>
-                </span>
-            </span>
-            <div class="status-title" id="statusTitle">Review तैयार हो रहा है...</div>
-            <div class="status-subtitle" id="statusSubtitle">AI powered unique review generate हो रहा है</div>
+        <div class="divider"></div>
+
+        <!-- Status -->
+        <div class="status" id="statusBox">
+            <span class="status-icon" id="statusIcon"><div class="spinner"></div></span>
+            <h3 id="statusTitle">Review तैयार हो रहा है...</h3>
+            <p id="statusSub">कुछ ही seconds में Google Review खुलेगा</p>
+
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="countdown-text" id="countdownText">Google Review खुलने में 3 seconds...</div>
         </div>
 
-        <div class="review-preview" id="reviewPreview" style="display:none;">
-            <div class="review-label">
-                <span class="ai-dot"></span>
-                AI GENERATED UNIQUE REVIEW — COPIED TO CLIPBOARD
-            </div>
+        <!-- Copied Review Preview -->
+        <div class="review-box" id="reviewBox" style="display:none;">
+            <div class="label"><span class="dot"></span> COPIED REVIEW</div>
             <div id="reviewText"></div>
-            <div class="review-meta">
-                <span class="review-stars-small">★★★★★</span>
-                <button class="copy-again-btn" onclick="copyReview()">📋 Copy Again</button>
+        </div>
+
+        <!-- Instructions -->
+        <div class="instruction" id="instructionBox">
+            <h4>📋 बस इतना करना है:</h4>
+            <div class="inst-steps">
+                <div class="inst-step done" id="s1">
+                    <span class="num">✓</span>
+                    <span>Review Auto-Copy ✅ हो रहा है</span>
+                </div>
+                <div class="inst-step" id="s2">
+                    <span class="num">2</span>
+                    <span>Google Review Box Auto-Open होगा</span>
+                </div>
+                <div class="inst-step" id="s3">
+                    <span class="num">3</span>
+                    <span>Review Box में <strong>Long Press → Paste → Submit</strong></span>
+                </div>
             </div>
         </div>
 
-        <button class="different-review-btn" id="diffReviewBtn" style="display:none;" onclick="generateNewReview()">
-            <span class="shuffle-icon">🔄</span> दूसरा Review चाहिए? यहाँ Tap करें
-        </button>
-
-        <button class="cta-button" id="ctaBtn" onclick="openGoogleReview()">
-            ⭐ Google पर Review दें — Paste करें
-            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-        </button>
-        <div class="cta-subtext">Review already copied है ✅ बस paste करें और submit!</div>
-
-        <div class="steps-card">
-            <div class="steps-title">📋 Simple Steps</div>
-            <div class="step-row">
-                <div class="step-number" style="background:rgba(52,168,83,0.15);color:#34A853;">✓</div>
-                <div class="step-info">
-                    <h4>QR Code Scan ✅</h4>
-                    <p>You're already here!</p>
-                </div>
-                <span class="step-check done">✓</span>
-            </div>
-            <div class="step-row">
-                <div class="step-number">2</div>
-                <div class="step-info">
-                    <h4>Review Auto-Copied 📋</h4>
-                    <p>Review clipboard mein copy ho gaya hai</p>
-                </div>
-                <span class="step-check" id="step2Check">✓</span>
-            </div>
-            <div class="step-row">
-                <div class="step-number">3</div>
-                <div class="step-info">
-                    <h4>Green Button Tap करें ☝️</h4>
-                    <p>Google Review page khulega</p>
-                </div>
-                <span class="step-check" id="step3Check">✓</span>
-            </div>
-            <div class="step-row">
-                <div class="step-number">4</div>
-                <div class="step-info">
-                    <h4>Paste करें & Submit ⭐</h4>
-                    <p>Review box mein long press → paste → submit</p>
-                </div>
-                <span class="step-check" id="step4Check">✓</span>
-            </div>
+        <!-- Popup Blocked Message -->
+        <div class="blocked-msg" id="blockedMsg">
+            <p>⚠️ Browser ने popup block कर दिया<br>
+            नीचे <strong>button tap करें</strong> Google Review खोलने के लिए</p>
         </div>
 
-        <div class="footer">
-            <p>🙏 आपका support हमारे लिए बहुत मायने रखता है</p>
-            <p style="margin-top:4px;">Made with <span class="heart">❤️</span> for Achievers Learning Centre</p>
+        <!-- Manual Fallback Button -->
+        <button class="manual-btn" id="manualBtn" onclick="manualOpen()">
+            ⭐ Google Review खोलें — Paste करें
+        </button>
+
+        <div class="foot">
+            🙏 आपका Review हमारे लिए बहुत मायने रखता है<br>
+            Powered by AI Smart Review • Achievers Learning Centre
         </div>
     </div>
+</div>
 
-    <div class="toast" id="toast"></div>
+<div class="toast" id="toast"></div>
 
-    <script>
-        const reviews = [
-            "Achievers Learning Centre mein padhai ka experience bahut hi shandar raha. Yahan ke teachers bahut dedicated hain aur har student par personally dhyan dete hain. Meri padhai mein bahut improvement aayi hai. Best coaching centre! ⭐⭐⭐⭐⭐",
-            "Main pichle 6 mahine se Achievers Learning Centre mein padh raha hoon aur mujhe yahan ka teaching method bahut pasand hai. Concepts ko bahut achhe se samjhaya jaata hai. Highly recommended! 👍",
-            "Mera beta yahan padhta hai aur uske marks mein bahut achha improvement aaya hai. Teachers bahut supportive hain aur regularly parents ko update dete hain. Bahut achha centre hai! 🙏",
-            "Achievers Learning Centre ne meri padhai ko ek nayi direction di hai. Yahan ka environment bahut positive hai aur teachers bahut knowledgeable hain. Thank you Achievers! 🎯",
-            "Best learning centre in the area! Yahan pe doubt clearing sessions bahut helpful hain. Har topic ko detail mein samjhaya jaata hai. 5 star deserved! ⭐",
-            "Achievers mein admission lena mera sabse achha decision tha. Yahan ki study material bhi bahut achhi quality ki hai aur tests regularly hote hain. 💯",
-            "Bahut achha coaching centre hai. Teachers bahut friendly hain aur har student ki individual needs ko samajhte hain. Meri performance school mein bahut improve hui hai.",
-            "Main bahut khush hoon ki maine Achievers Learning Centre choose kiya. Yahan ka padhai ka tarika unique hai aur results bhi bahut achhe aate hain. Sabko recommend karunga! 👏",
-            "Achievers Learning Centre ek bahut hi achha coaching centre hai. Yahan ke teachers bahut mehnat karte hain students ke liye. Mujhe yahan padhke bahut fayda hua. ⭐⭐⭐⭐⭐",
-            "Is centre mein padhai ka mahol bahut achha hai. Distraction bilkul nahi hai aur focus sirf padhai par rehta hai. Bahut achha experience raha! 📚",
-            "Mere dono bachche yahan padhte hain aur dono ke results bahut achhe aaye hain. Teachers ka dedication dekhne layak hai. Achievers ko 5 star dena banta hai! ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre mein join karne ke baad se meri maths bahut strong ho gayi hai. Jo topics mujhe samajh nahi aate the ab bahut easy lagte hain. Thank you teachers! 🙏",
-            "Yahan ka teaching style bahut interactive hai. Boring lectures nahi hote har class mein kuch naya seekhne ko milta hai. Best coaching! 💪",
-            "Achievers ne mujhe board exams mein achhe marks dilwaye. Yahan ki preparation bahut systematic hai. Bahut achha centre hai! 🎓",
-            "Main apne friend ki recommendation par yahan aaya tha aur ab main bhi sabko recommend karta hoon. Teaching quality top-notch hai. ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre ka sabse achha point hai ki yahan har student ko equal attention milta hai. Koi bhi student neglect nahi hota. 👍",
-            "Mujhe Science bahut mushkil lagti thi lekin Achievers ke teachers ne itna achha padhaya ki ab mera favourite subject ban gaya hai. Amazing teaching! 🔬",
-            "Coaching centre ka infrastructure bhi bahut achha hai. Comfortable environment mein padhai hoti hai. Overall bahut achha! 🏫",
-            "Achievers mein regular test series chalti hai jisse exam ki achhi preparation ho jaati hai. Ye approach bahut helpful hai. Highly recommended! 📝",
-            "Yahan ke teachers sirf syllabus nahi padhate balki concepts clear karte hain. Real understanding hoti hai yahan. Best in the city! 🌟",
-            "Achievers Learning Centre mein fees bhi reasonable hai aur quality of education bahut achhi hai. Value for money hai bilkul! 💰",
-            "Mere parents bhi bahut khush hain meri progress dekh kar. Achievers ke teachers ka bahut bahut dhanyavaad! 🙏⭐",
-            "Class mein batch size chhota hai isliye har student par achha dhyan diya jaata hai. Ye bahut important hai aur Achievers mein ye milta hai. 👌",
-            "Achievers Learning Centre ke revision sessions bahut achhe hote hain. Exam se pehle jo revision hota hai wo bahut helpful hai. 📖",
-            "Main 2 saal se yahan padh raha hoon aur har saal meri performance improve ho rahi hai. Consistent improvement ka credit Achievers ko jaata hai! 📈",
-            "Achievers Learning Centre is hands down the best coaching institute I have ever been to. The teachers are incredibly knowledgeable and always willing to help. Highly recommended! ⭐⭐⭐⭐⭐",
-            "I have been studying at Achievers for the past year and my grades have improved significantly. The teaching methodology here is excellent and very student-friendly. 👍",
-            "What sets Achievers Learning Centre apart is their personalized attention to each student. They really care about every student's progress. Amazing experience! 🌟",
-            "The best thing about Achievers is their dedicated faculty. They go above and beyond to ensure every student understands the concepts thoroughly. 5 stars! ⭐",
-            "Achievers Learning Centre has transformed my academic performance. From average grades to top of my class all thanks to the wonderful teachers here! 🎯",
-            "Excellent coaching centre with amazing faculty. The study material provided is comprehensive and the regular tests keep students prepared. Strongly recommend! 💯",
-            "I joined Achievers Learning Centre on a friend's suggestion and it turned out to be the best decision. The quality of education here is outstanding! 👏",
-            "The learning environment at Achievers is perfect for students. Clean organized classrooms with all modern facilities. Great place to study! 🏫",
-            "Achievers Learning Centre provides the perfect balance of theory and practice. Their approach to teaching is very effective and result-oriented. ⭐⭐⭐⭐⭐",
-            "My child has shown remarkable improvement since joining Achievers. The teachers are very supportive and keep parents updated regularly. Thank you! 🙏",
-            "Best coaching centre in the area! The teachers make even difficult topics easy to understand. I am very happy with my progress here. 💪",
-            "Achievers Learning Centre is a gem! The faculty is experienced the study material is top-notch and the results speak for themselves. Highly recommended! 🌟",
-            "What I love about Achievers is their focus on concept clarity rather than rote learning. This approach has really helped me in my exams. ⭐",
-            "The doubt-clearing sessions at Achievers are incredibly helpful. No question is too small and the teachers patiently explain everything. 5 stars! 📚",
-            "Achievers Learning Centre has exceeded all my expectations. The quality of teaching here is comparable to the best institutes. Amazing experience! 🎓",
-            "Achievers Learning Centre really mein ek game changer hai! Jab se yahan join kiya hai meri studies aur confidence dono improve ho gaye hain. Teachers ekdum amazing hain! ⭐⭐⭐⭐⭐",
-            "Best coaching centre! Yahan ke teachers not only teach well but also motivate students. Mera experience bahut positive raha hai. Must visit! 💯",
-            "Achievers mein padhai karna ek alag hi experience hai. Yahan ka atmosphere study ke liye perfect hai aur teachers bahut supportive hain. Love it! ❤️",
-            "I was struggling with my studies but Achievers Learning Centre ne sab kuch change kar diya. Ab mujhe padhai mein confidence aata hai. Thank you! 🙏",
-            "Achievers ka teaching method unique hai. They use smart techniques to make learning interesting. Boring bilkul nahi lagta! Highly recommended! 🎯",
-            "Mere saare friends ko maine Achievers recommend kiya hai aur sabko bahut achha laga. Quality teaching at affordable fees. What more do you need? 👍",
-            "Achievers Learning Centre is the perfect place for serious students. Yahan ka discipline aur study environment dono top-class hain. 5 stars without doubt! ⭐⭐⭐⭐⭐",
-            "The faculty at Achievers is really passionate about teaching. Har class mein kuch naya seekhne ko milta hai. Best decision to join here! 📚",
-            "Achievers ne meri weakness ko strength mein badal diya. Jo subjects mujhe mushkil lagte the ab easy lagte hain. All credit goes to the amazing teachers! 💪",
-            "Bahut achha learning experience at Achievers! Regular tests quality notes and excellent teaching. Everything a student needs is available here. ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre mein admission lene ke baad meri life change ho gayi. Not just marks but my overall understanding of subjects has improved drastically! 🌟",
-            "If you are looking for a reliable coaching centre Achievers is the answer. Trust me you will not regret it! Bahut achha centre hai! 👏",
-            "Yahan ke teachers itne achhe hain ki padhai mein interest aa jaata hai. Achievers Learning Centre deserves all the praise. 5 stars! ⭐",
-            "Achievers ka result record bahut impressive hai. Yahan ke students consistently achhe marks laate hain. Proud to be a part of Achievers family! 🎓",
-            "The personal attention given to each student at Achievers is remarkable. They truly care about our success. Bahut achha centre hai! 🙏",
-            "Achievers Learning Centre mein modern teaching methods use hote hain. Smart classes aur digital learning bhi available hai. Very impressive! 💻",
-            "Thank you Achievers for making learning so enjoyable! Mera experience yahan bahut achha raha hai aur main sabko yahan join karne ki salah dunga. ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre ki ek aur achhi baat yahan doubt puchne mein kabhi hesitation nahi hoti. Teachers bahut patient hain. 👍",
-            "Outstanding coaching centre! Achievers mein padhai ke saath saath personality development par bhi focus kiya jaata hai. Complete growth hoti hai yahan! 🌟",
-            "Meri beti ne Achievers mein padhai ki aur uske results dekh kar hum bahut khush hain. Disciplined aur focused environment hai yahan. Thank you Achievers! 🙏",
-            "Achievers Learning Centre is simply the best! Great teachers great environment great results. Kya chahiye aur? Full 5 stars! ⭐⭐⭐⭐⭐",
-            "Yahan padhne ke baad mujhe realize hua ki achha teacher kitna fark dalta hai. Achievers ke teachers ne meri zindagi badal di hai. Forever grateful! ❤️",
-            "Achievers Learning Centre mein join karo aur khud dekho fark. Meri guarantee hai ki disappoint nahi hoge. Best coaching centre! 💯",
-            "Har parent ko apne bachche ko Achievers mein bhejna chahiye. Quality education at its best! Bahut achha experience raha hamara. 👨‍👩‍👧‍👦",
-            "Achievers se better coaching centre nahi milega. Try karo aur khud experience karo. Main 100% satisfied hoon! ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre joining was the turning point of my academic career. The systematic approach to every subject is what makes it stand out. Truly grateful! 🎯",
-            "What I appreciate most about Achievers is the timely completion of syllabus with thorough revision. This gives students ample time for practice. Excellent! 📝",
-            "Achievers Learning Centre mein weekend special classes bhi hoti hain jo bahut helpful hain. Extra practice sessions se confidence build hota hai. Top class! 💪",
-            "The competitive environment at Achievers pushes you to do better. Healthy competition ke saath achhi padhai perfect combination! ⭐⭐⭐⭐⭐",
-            "Achievers ka study material market mein milne wale kisi bhi material se better hai. Well-researched aur exam-oriented content milta hai. 📚",
-            "I am a parent and I can see the visible change in my son's attitude towards studies after joining Achievers. The teachers deserve all the credit! 👏",
-            "Achievers Learning Centre mein ek family jaisa feel aata hai. Teachers students ke saath bahut achha bond banate hain. Loving this place! ❤️",
-            "From average to topper ye journey Achievers Learning Centre ne possible banaya. Mera board result dekhkar sabne Achievers ka naam pucha! 🏆",
-            "Achievers mein online aur offline dono mode mein classes available hain. Flexibility bahut achhi hai. Modern approach to education! 💻",
-            "Achievers Learning Centre ki ek baat aur yahan kabhi teacher absent nahi hota. Regular classes with no gaps. This consistency matters! ⭐",
-            "Achievers se nikal ke jab school jaate hain to sab kuch already samajh mein aata hai. School mein bhi confidence se answer karte hain. 🙌",
-            "Mera Achievers mein 3rd year hai aur har saal meri ranking improve hoti hai. Consistent growth ka raaz hai Achievers! 📈",
-            "Achievers Learning Centre mein parents meetings bhi regularly hoti hain. Teachers transparent hain progress ke baare mein. Trustworthy coaching! 🤝",
-            "Jo log achhi coaching dhundh rahe hain unhe ek baar Achievers zaroor visit karna chahiye. Ek baar aao to phir yahin padhoge! ⭐⭐⭐⭐⭐",
-            "Achievers Learning Centre ka thank you bolne ke liye words nahi hain mere paas. Jo unhone mere liye kiya hai wo lifelong yaad rahega. Grateful forever! 🙏❤️"
-        ];
+<script>
 
-        let usedIndices = [];
+// =============================================
+// 🧠 80+ UNIQUE REVIEWS — HAR BAAR ALAG
+// =============================================
+const R = [
+    "Achievers Learning Centre mein padhai ka experience bahut shandar raha. Teachers bahut dedicated hain aur har student par personally dhyan dete hain. Meri padhai mein bahut improvement aayi hai. Best coaching centre!",
+    "Main pichle 6 mahine se Achievers mein padh raha hoon aur teaching method bahut pasand hai. Concepts bahut achhe se samjhaye jaate hain. Highly recommended!",
+    "Mera beta yahan padhta hai aur uske marks mein bahut improvement aaya hai. Teachers bahut supportive hain aur regularly parents ko update dete hain. Bahut achha centre hai!",
+    "Achievers Learning Centre ne meri padhai ko nayi direction di hai. Environment bahut positive hai aur teachers bahut knowledgeable hain. Thank you Achievers!",
+    "Best learning centre in the area! Doubt clearing sessions bahut helpful hain. Har topic detail mein samjhaya jaata hai. 5 star deserved!",
+    "Achievers mein admission lena mera sabse achha decision tha. Study material achhi quality ki hai aur tests regularly hote hain. Bahut achha!",
+    "Bahut achha coaching centre hai. Teachers friendly hain aur har student ki individual needs samajhte hain. School performance bahut improve hui hai.",
+    "Main bahut khush hoon ki Achievers choose kiya. Padhai ka tarika unique hai aur results achhe aate hain. Sabko recommend karunga!",
+    "Achievers ek bahut hi achha coaching centre hai. Teachers bahut mehnat karte hain students ke liye. Yahan padhke bahut fayda hua.",
+    "Is centre mein padhai ka mahol bahut achha hai. Distraction bilkul nahi hai aur focus sirf padhai par rehta hai. Bahut achha experience!",
+    "Mere dono bachche yahan padhte hain aur dono ke results bahut achhe aaye hain. Teachers ka dedication dekhne layak hai. 5 star!",
+    "Achievers mein join karne ke baad meri maths bahut strong ho gayi. Jo topics samajh nahi aate the ab easy lagte hain. Thank you teachers!",
+    "Teaching style bahut interactive hai. Boring lectures nahi hote har class mein kuch naya seekhne ko milta hai. Best coaching!",
+    "Achievers ne board exams mein achhe marks dilwaye. Preparation bahut systematic hai. Bahut achha centre hai!",
+    "Friend ki recommendation par aaya tha aur ab main bhi sabko recommend karta hoon. Teaching quality top-notch hai.",
+    "Achievers ka sabse achha point hai ki har student ko equal attention milta hai. Koi bhi student neglect nahi hota.",
+    "Mujhe Science mushkil lagti thi lekin Achievers ke teachers ne itna achha padhaya ki ab favourite subject ban gaya. Amazing teaching!",
+    "Infrastructure achha hai comfortable environment mein padhai hoti hai. Overall bahut achha coaching centre!",
+    "Regular test series chalti hai jisse exam ki preparation achhi ho jaati hai. Bahut helpful approach. Highly recommended!",
+    "Teachers sirf syllabus nahi padhate concepts clear karte hain. Real understanding hoti hai yahan. Best in the city!",
+    "Fees reasonable hai aur education quality achhi hai. Value for money hai bilkul!",
+    "Parents bhi khush hain meri progress dekh kar. Teachers ka bahut dhanyavaad!",
+    "Batch size chhota hai isliye har student par dhyan diya jaata hai. Achievers mein ye milta hai.",
+    "Revision sessions bahut achhe hote hain. Exam se pehle revision bahut helpful hai.",
+    "2 saal se yahan padh raha hoon har saal performance improve ho rahi hai. Credit Achievers ko jaata hai!",
+    "Achievers is the best coaching institute. Teachers are incredibly knowledgeable and always willing to help. Highly recommended!",
+    "Been studying at Achievers for a year and grades improved significantly. Teaching methodology is excellent and student-friendly.",
+    "Personalized attention to each student sets Achievers apart. They really care about every student progress. Amazing experience!",
+    "Dedicated faculty goes above and beyond to ensure every student understands concepts thoroughly. Five stars!",
+    "Achievers transformed my academic performance. From average to top of class thanks to wonderful teachers here!",
+    "Excellent coaching with amazing faculty. Study material is comprehensive and regular tests keep students prepared. Strongly recommend!",
+    "Joined on friend suggestion and it was the best decision. Quality of education is outstanding!",
+    "Learning environment is perfect for students. Clean organized classrooms with modern facilities. Great place to study!",
+    "Perfect balance of theory and practice. Approach is very effective and result-oriented. Highly satisfied!",
+    "My child showed remarkable improvement since joining Achievers. Teachers are supportive and keep parents updated. Thank you!",
+    "Best coaching in the area! Teachers make difficult topics easy. Very happy with my progress here.",
+    "Faculty is experienced study material is top-notch and results speak for themselves. Highly recommended!",
+    "Focus on concept clarity rather than rote learning. This approach really helped me in exams.",
+    "Doubt-clearing sessions are incredibly helpful. No question is too small teachers patiently explain everything. Five stars!",
+    "Exceeded all my expectations. Quality of teaching is comparable to the best institutes. Amazing experience!",
+    "Achievers really mein game changer hai! Studies aur confidence dono improve ho gaye. Teachers amazing hain!",
+    "Best coaching! Teachers not only teach well but also motivate students. Experience bahut positive raha. Must visit!",
+    "Padhai karna ek alag hi experience hai. Atmosphere perfect hai aur teachers supportive hain. Love it!",
+    "Was struggling with studies but Achievers ne sab change kar diya. Ab confidence aata hai. Thank you!",
+    "Teaching method unique hai. Smart techniques make learning interesting. Boring bilkul nahi lagta! Recommended!",
+    "Saare friends ko recommend kiya sabko achha laga. Quality teaching at affordable fees. What more do you need?",
+    "Perfect place for serious students. Discipline aur study environment dono top-class hain. Five stars!",
+    "Faculty is passionate about teaching. Har class mein kuch naya seekhne ko milta hai. Best decision to join!",
+    "Meri weakness ko strength mein badal diya. Mushkil subjects ab easy lagte hain. Credit goes to amazing teachers!",
+    "Achha learning experience! Regular tests quality notes excellent teaching. Everything a student needs is here.",
+    "Admission ke baad life change ho gayi. Not just marks but overall understanding improved drastically!",
+    "Looking for reliable coaching? Achievers is the answer. Trust me you will not regret it! Bahut achha!",
+    "Teachers itne achhe hain ki padhai mein interest aa jaata hai. Achievers deserves all praise. Five stars!",
+    "Result record bahut impressive hai. Students consistently achhe marks laate hain. Proud to be part of Achievers!",
+    "Personal attention given to each student is remarkable. They truly care about our success. Achha centre!",
+    "Modern teaching methods use hote hain. Smart classes aur digital learning available hai. Very impressive!",
+    "Thank you for making learning enjoyable! Experience bahut achha raha. Sabko join karne ki salah dunga.",
+    "Doubt puchne mein kabhi hesitation nahi hoti. Teachers bahut patient hain. Great coaching!",
+    "Outstanding! Padhai ke saath personality development par bhi focus kiya jaata hai. Complete growth hoti hai!",
+    "Beti ke results dekh kar bahut khush hain. Disciplined aur focused environment hai. Thank you Achievers!",
+    "Simply the best! Great teachers great environment great results. Full five stars without any doubt!",
+    "Achha teacher kitna fark dalta hai ye yahan padhke realize hua. Teachers ne zindagi badal di. Forever grateful!",
+    "Join karo aur khud dekho fark. Guarantee hai disappoint nahi hoge. Best coaching centre!",
+    "Har parent ko bachche ko Achievers mein bhejna chahiye. Quality education at its best!",
+    "Achievers se better coaching nahi milega. Try karo experience karo. 100% satisfied hoon!",
+    "Turning point of my academic career. Systematic approach to every subject makes it stand out. Grateful!",
+    "Timely syllabus completion with thorough revision gives ample time for practice. Excellent approach!",
+    "Weekend special classes bahut helpful hain. Extra practice sessions se confidence build hota hai. Top class!",
+    "Competitive environment pushes you to do better. Healthy competition ke saath achhi padhai perfect combo!",
+    "Study material market mein milne wale kisi bhi material se better hai. Exam-oriented content milta hai.",
+    "Parent here. Visible change in son attitude towards studies after joining. Teachers deserve all credit!",
+    "Family jaisa feel aata hai. Teachers students ke saath achha bond banate hain. Loving this place!",
+    "Average to topper journey Achievers ne possible banaya. Board result dekhkar sabne naam pucha!",
+    "Online aur offline dono mode available. Flexibility achhi hai. Modern approach to education!",
+    "Teacher kabhi absent nahi hota. Regular classes with no gaps. Consistency matters and Achievers delivers!",
+    "School jaate hain to sab already samajh mein aata hai. Confidence se answer karte hain.",
+    "3rd year hai har saal ranking improve hoti hai. Consistent growth ka raaz Achievers hai!",
+    "Parents meetings regularly hoti hain. Teachers transparent hain progress ke baare mein. Trustworthy!",
+    "Achhi coaching dhundh rahe ho to ek baar Achievers visit karo. Ek baar aao phir yahin padhoge!",
+    "Thank you bolne ke liye words nahi hain. Jo kiya hai wo lifelong yaad rahega. Grateful forever!"
+];
 
-        function getRandomReview() {
-            if (usedIndices.length >= reviews.length) {
-                usedIndices = [];
+let used = [];
+
+function getReview() {
+    if (used.length >= R.length) used = [];
+    let i;
+    do { i = Math.floor(Math.random() * R.length); } while (used.includes(i));
+    used.push(i);
+    try { sessionStorage.setItem('ur', JSON.stringify(used)); } catch(e) {}
+    return R[i];
+}
+
+// =============================================
+// COPY TO CLIPBOARD
+// =============================================
+async function doCopy(text) {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch(e) {
+        try {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.cssText = 'position:fixed;left:-9999px;top:-9999px';
+            document.body.appendChild(ta);
+            ta.focus(); ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            return true;
+        } catch(e2) { return false; }
+    }
+}
+
+// =============================================
+// UI HELPERS
+// =============================================
+function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function confetti(n) {
+    const box = document.getElementById('confBox');
+    const colors = ['#4285F4','#EA4335','#FBBC05','#34A853','#ff6b6b','#feca57'];
+    for (let i = 0; i < n; i++) {
+        const c = document.createElement('div');
+        c.className = 'conf';
+        c.style.left = Math.random()*100+'%';
+        c.style.background = colors[Math.floor(Math.random()*colors.length)];
+        c.style.animationDelay = Math.random()*0.8+'s';
+        c.style.animationDuration = (2+Math.random()*2)+'s';
+        c.style.width = (5+Math.random()*8)+'px';
+        c.style.height = (5+Math.random()*8)+'px';
+        box.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }
+}
+
+// =============================================
+// GOOGLE REVIEW URL
+// =============================================
+const GOOGLE_URL = 'https://search.google.com/local/writereview?placeid=ChIJnZsMLSbH1DsR4GPbHNiNZIE';
+
+// =============================================
+// MANUAL OPEN (Fallback)
+// =============================================
+function manualOpen() {
+    window.location.href = GOOGLE_URL;
+}
+
+// =============================================
+// 🚀 MAIN — AUTO COPY + AUTO REDIRECT
+// =============================================
+let currentReview = '';
+
+async function main() {
+    // Load session
+    try {
+        const s = sessionStorage.getItem('ur');
+        if (s) used = JSON.parse(s);
+    } catch(e) {}
+
+    // 1. Generate random review
+    currentReview = getReview();
+
+    const statusIcon = document.getElementById('statusIcon');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusSub = document.getElementById('statusSub');
+    const statusBox = document.getElementById('statusBox');
+    const progressBar = document.getElementById('progressBar');
+    const countdownText = document.getElementById('countdownText');
+    const reviewBox = document.getElementById('reviewBox');
+    const s1 = document.getElementById('s1');
+    const s2 = document.getElementById('s2');
+
+    // 2. Copy review (after 500ms for page to settle)
+    setTimeout(async () => {
+        const copied = await doCopy(currentReview);
+
+        // Show review
+        document.getElementById('reviewText').textContent = currentReview;
+        reviewBox.style.display = 'block';
+
+        if (copied) {
+            s1.querySelector('span:last-child').textContent = 'Review Auto-Copy ✅ Done!';
+            statusIcon.innerHTML = '✅';
+            statusTitle.textContent = 'Review Copy हो गया!';
+            statusSub.textContent = 'Google Review अभी खुल रहा है...';
+            statusBox.style.borderColor = 'rgba(52,168,83,0.3)';
+            statusBox.style.background = 'rgba(52,168,83,0.1)';
+            toast('✅ Review copied!');
+            confetti(25);
+        } else {
+            statusIcon.innerHTML = '📋';
+            statusTitle.textContent = 'Review तैयार है!';
+            statusSub.textContent = 'Google Review खुल रहा है...';
+        }
+
+        // 3. Countdown + Auto Redirect (3 seconds)
+        let sec = 3;
+        progressBar.style.width = '33%';
+        countdownText.textContent = `Google Review खुलने में ${sec} seconds...`;
+
+        const timer = setInterval(() => {
+            sec--;
+            progressBar.style.width = ((3 - sec) / 3 * 100) + '%';
+
+            if (sec > 0) {
+                countdownText.textContent = `Google Review खुलने में ${sec} second${sec > 1 ? 's' : ''}...`;
+            } else {
+                clearInterval(timer);
+                countdownText.textContent = 'Google Review खुल रहा है... 🚀';
+                progressBar.style.width = '100%';
+
+                // Update step 2
+                s2.classList.add('done');
+                s2.querySelector('.num').textContent = '✓';
+                s2.querySelector('span:last-child').textContent = 'Google Review Box Open ✅';
+
+                // Update status
+                statusTitle.textContent = '🚀 Redirect हो रहा है...';
+                statusSub.textContent = 'बस Paste करें और Submit!';
+
+                // 4. TRY AUTO REDIRECT
+                setTimeout(() => {
+                    // Method 1: window.location (most reliable on mobile)
+                    try {
+                        window.location.href = GOOGLE_URL;
+                    } catch(e) {}
+
+                    // Method 2: If location didn't work, show manual button
+                    setTimeout(() => {
+                        // If we're still here, popup was blocked
+                        document.getElementById('blockedMsg').style.display = 'block';
+                        document.getElementById('manualBtn').style.display = 'flex';
+                        statusTitle.textContent = '📋 Review Copy हो गया!';
+                        statusSub.textContent = 'नीचे Button tap करें';
+                        countdownText.textContent = '👇 नीचे Green Button tap करें';
+                    }, 2000);
+
+                }, 500);
             }
-            let index;
-            do {
-                index = Math.floor(Math.random() * reviews.length);
-            } while (usedIndices.includes(index));
-            usedIndices.push(index);
-            try {
-                sessionStorage.setItem('usedReviews', JSON.stringify(usedIndices));
-            } catch(e) {}
-            return reviews[index];
-        }
+        }, 1000);
 
-        let currentReview = '';
+    }, 800);
+}
 
-        async function copyReview() {
-            try {
-                await navigator.clipboard.writeText(currentReview);
-                showToast('✅ Review copied successfully!');
-                document.getElementById('step2Check').classList.add('done');
-                return true;
-            } catch (err) {
-                const textArea = document.createElement('textarea');
-                textArea.value = currentReview;
-                textArea.style.position = 'fixed';
-                textArea.style.left = '-9999px';
-                textArea.style.top = '-9999px';
-                document.body.appendChild(textArea);
-                textArea.focus();
-                textArea.select();
-                try {
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                    showToast('✅ Review copied successfully!');
-                    document.getElementById('step2Check').classList.add('done');
-                    return true;
-                } catch (err2) {
-                    document.body.removeChild(textArea);
-                    showToast('⚠️ Copy Again button दबाएं');
-                    return false;
-                }
-            }
-        }
+window.addEventListener('DOMContentLoaded', main);
 
-        async function generateNewReview() {
-            const btn = document.getElementById('diffReviewBtn');
-            btn.innerHTML = '<span class="shuffle-icon">🔄</span> Generating...';
-            currentReview = getRandomReview();
-            document.getElementById('reviewText').textContent = currentReview;
-            await copyReview();
-            setTimeout(() => {
-                btn.innerHTML = '<span class="shuffle-icon">🔄</span> दूसरा Review चाहिए? यहाँ Tap करें';
-            }, 500);
-            createConfetti(15);
-        }
-
-        function openGoogleReview() {
-            document.getElementById('step3Check').classList.add('done');
-            showToast('🚀 Google Review page खुल रहा है...');
-            setTimeout(() => {
-                window.open('https://search.google.com/local/writereview?placeid=ChIJnZsMLSbH1DsR4GPbHNiNZIE', '_blank');
-            }, 800);
-        }
-
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2500);
-        }
-
-        function createConfetti(count) {
-            const container = document.getElementById('confettiContainer');
-            const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#ff6b6b', '#feca57', '#48dbfb'];
-            for (let i = 0; i < count; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.left = Math.random() * 100 + '%';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.animationDelay = Math.random() * 1 + 's';
-                confetti.style.animationDuration = (2 + Math.random() * 2) + 's';
-                confetti.style.width = (6 + Math.random() * 8) + 'px';
-                confetti.style.height = (6 + Math.random() * 8) + 'px';
-                container.appendChild(confetti);
-                setTimeout(() => confetti.remove(), 4000);
-            }
-        }
-
-        async function init() {
-            const statusCard = document.getElementById('statusCard');
-            const statusIcon = document.getElementById('statusIcon');
-            const statusTitle = document.getElementById('statusTitle');
-            const statusSubtitle = document.getElementById('statusSubtitle');
-
-            try {
-                const stored = sessionStorage.getItem('usedReviews');
-                if (stored) usedIndices = JSON.parse(stored);
-            } catch(e) {}
-
-            currentReview = getRandomReview();
-
-            setTimeout(async () => {
-                document.getElementById('reviewText').textContent = currentReview;
-                document.getElementById('reviewPreview').style.display = 'block';
-                document.getElementById('diffReviewBtn').style.display = 'flex';
-
-                const copied = await copyReview();
-
-                if (copied) {
-                    statusCard.className = 'status-card copied';
-                    statusIcon.textContent = '✅';
-                    statusTitle.textContent = 'Review Copy हो गया! 🎉';
-                    statusSubtitle.textContent = 'अब नीचे Green Button tap करें';
-                    createConfetti(30);
-                } else {
-                    statusCard.className = 'status-card error';
-                    statusIcon.textContent = '📋';
-                    statusTitle.textContent = 'Review तैयार है!';
-                    statusSubtitle.textContent = 'Copy Again बटन दबाकर copy करें';
-                }
-            }, 1500);
-        }
-
-        window.addEventListener('DOMContentLoaded', init);
-    </script>
+</script>
 </body>
 </html>
